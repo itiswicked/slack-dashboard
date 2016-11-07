@@ -7,6 +7,7 @@ let configureStore = () => {
   let middlewares = [routerMiddleware(browserHistory)];
   let store = createStore(
     rootReducer,
+    window.devToolsExtension && window.devToolsExtension(),
     applyMiddleware(...middlewares)
   );
 

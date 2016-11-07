@@ -1,11 +1,9 @@
-import { reducer as form } from 'redux-form';
 import { combineReducers } from 'redux';
+import { reducer as formReducer } from 'redux-form';
 
-const aReducer = (state = null, action) => {
-  return state;
-}
+import messageTypes from './messageTypes';
 
 export default combineReducers({
-  form,
-  aReducer
+  messageTypes,
+  form: formReducer
 });
