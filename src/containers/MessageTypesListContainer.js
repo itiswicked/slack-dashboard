@@ -9,13 +9,13 @@ class MessageTypesListContainer extends Component {
 
   render() {
     let messageTypes = this.props.types.map(type => {
-      return <MessageType {...type} />;
+      return <MessageType {...type} key={type.id} />;
     });
 
     return (
-      <ul>
+      <div>
         {messageTypes}
-      </ul>
+      </div>
     )
   }
 }
