@@ -15,7 +15,6 @@ const MessageListContainer = props => {
 };
 
 let mapStateToProps = (state, ownProps) => {
-  console.log(state);
   return {
     messages: state.messages.items.filter(message => message.typeId === ownProps.id)
   }

@@ -1,29 +1,70 @@
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 
-import { toggleFormActive } from './../actions/message';
 import Message from './../components/Message';
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-   formActive: state.messages.items.find(message => message.formActive)
+class MessageContainer extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      team: this.props.team,
+      text: this.props.text
+    }
   }
+
+  handleTextChange
+
+  render() {
+    return(
+      <Message
+        {...this.props.message}
+        formActive={this.props.formActive}
+        {...eventHandlers}
+      />
+    )
+  }
+}
+
+const mapStateToProps = (state, { id }) => {
+  return {
+   formActive: state.messages.activeFormId === id
+  };
 }
 
 const mapDispatchToProps = (dispatch, { id }) => {
-  console.log("mapDispatchToProps");
-  return {
-    toggleFormActive: () => {
-      dispatch(toggleFormActive(id))
-    }
-  }
+  return {};
 }
 
-const MessageContainer = connect(
+export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Message)
+)(MessageContainer)
 
-export default reduxForm({
-  form: 'message'
-})(MessageContainer)
+// function makeid()
+// {
+//     var text = "";
+//     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+//
+//     for(var i = 0; i < 5; i++) {
+//       text += possible.charAt(Math.floor(Math.random() * possible.length));
+//     }
+//
+//     return text;
+// }
+
+// let MessageContainer = reduxForm({
+//   form: 'message' + makeid()
+// })(DecoratedMessage)
+
+
+// export default connect(
+//   (state, ownProps) => {
+//     debugger;
+//     return {
+//       initialValues: {
+//         text: grabTextForActiveForm(state, ownProps.id)
+//       }
+//     }
+//   }
+// )(MessageContainer)
