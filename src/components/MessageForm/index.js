@@ -3,7 +3,6 @@ import { Field } from 'redux-form';
 
 const MessageForm = ({ handleSubmit, typeId }) => {
   let id =  <Field name="typeId" component="input" type="text" />;
-
   return (
     <form onSubmit={handleSubmit}>
       <p>New Message</p>

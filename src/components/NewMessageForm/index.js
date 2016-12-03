@@ -13,7 +13,7 @@ const MessageForm = ({ handleSubmit, typeId }) => {
         <option value="ignition-2">Ignition 2</option>
       </Field>
       <label>Message</label>
-      <Field name="message" component="input" type="text" />
+      <Field name="text" component="input" type="text" />
       <button type="submit">Save</button>
     </form>
   )

@@ -2,12 +2,18 @@ import React from 'react';
 import { Field } from 'redux-form';
 
 const Message = props => {
+
+  let { text, formActive } = props;
+  console.log(text);
+  let textInput = <input type="text" value={text} onChange={props.handleTextChange}/>
   return (
     <div>
-      For: {props.team}
-      <br />
-      Message: {props.message}
-      <br />
+      <form>
+        For: {props.team}
+        <br />
+        Message: { formActive ? textInput : text}
+        <br />
+      </form>
     </div>
   );
 };

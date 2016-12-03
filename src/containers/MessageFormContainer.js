@@ -1,6 +1,6 @@
   import { reduxForm, reset } from 'redux-form';
 
-import MessageForm from './../components/MessageForm';
+import NewMessageForm from './../components/NewMessageForm';
 import { postNewMessage } from './../actions/postNewMessage'
 
 let validate = values => {
@@ -17,4 +17,4 @@ export default reduxForm({
   form: 'newMessage',
   validate,
   onSubmit
-})(MessageForm)
+})(NewMessageForm)
