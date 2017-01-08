@@ -1,21 +1,22 @@
-import { POST_NEW_MESSAGE } from './../actions/postNewMessage';
+import { POST_NEW_MESSAGE } from './../actions/message';
 // import { CHANGE_ACTIVE_FORM } from './../actions/message';
 
 let initialState = {
-  items: [],
-  activeFormId: 0
+  items: []
 }
 
 const messages = (state = initialState, action) => {
   switch(action.type) {
     case POST_NEW_MESSAGE:
-      let nextId = 0;
+      let nextId = 1;
       if(state.items[state.items.length - 1]) {
         nextId = state.items[state.items.length - 1].id + 1;
       }
-      let newMessage = Object.assign({}, action.item, {
+      let newMessage = {
+        body: action.body,
+        teamId: action.teamId,
         id: nextId
-      });
+      };
       let newMessages = [ ...state.items, newMessage ];
       return Object.assign({}, state, { items: newMessages });
     default:

@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import MessageContainer from './MessageContainer'
+import MessageContainer from './../Message/MessageContainer'
 
 const MessageListContainer = props => {
   let messageComps = props.messages.map(message => {
     return <MessageContainer key={message.id} {...message} />
   });
-  return(
+  return (
     <div>
       {messageComps}
     </div>

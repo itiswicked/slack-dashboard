@@ -1,21 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { reduxForm } from 'redux-form';
-
-import Message from './../components/Message';
+import Message from './Message';
 
 class MessageContainer extends Component {
   constructor(props) {
     super(props)
-    console.log(props);
     this.state = {
-      team: this.props.team,
-      text: this.props
+      selectedTeam: this.props.teams.find(team => team.id === this.props.message.teamId),
+      message: this.props.message,
+      formActive: false
     }
   }
 
-  handleTextChange(e) {
-    this.setState({text: e.target.value});
+  handleBodyChange(e) {
+    this.setState({body: e.target.value});
   }
 
   handleTeamChange(e) {
@@ -23,20 +21,25 @@ class MessageContainer extends Component {
   }
 
   handleSubmit(e) {
-    console.log("SUBMITTED!");
+    console.log("EDIT SUBMITTED!");
+  }
+
+  toggleFormActive() {
+    this.setState({formActive: !this.state.formActive})
   }
 
   render() {
     let eventHandlers = {
-      handleTextChange: this.handleTextChange.bind(this),
+      handleBodyChange: this.handleBodyChange.bind(this),
       handleTeamChange: this.handleTeamChange.bind(this),
-      handleSubmit: this.handleSubmit.bind(this)
+      handleSubmit: this.handleSubmit.bind(this),
+      toggleFormActive: this.toggleFormActive.bind(this)
     }
 
     return(
       <Message
-        text={this.props.text}
-        formActive={this.props.formActive}
+        teams={this.props.teams}
+        {...this.state}
         {...eventHandlers}
       />
     )
@@ -46,7 +49,7 @@ class MessageContainer extends Component {
 const mapStateToProps = (state, { id }) => {
   return {
     message: state.messages.items.find(message => message.id === id),
-   formActive: state.messages.activeFormId === id
+    teams: state.teams.teams
   };
 }
 
