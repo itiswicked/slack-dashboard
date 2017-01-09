@@ -1,9 +1,13 @@
 import React from 'react';
 
 const MessageFormFields = props => {
-  const options = props.teams.map(team => {
+  let { selectedTeam, teams } = props;
+  let filteredTeams = teams.filter(team => team.id !== selectedTeam.id);
+  let newlyOrderedTeams = [ selectedTeam, ...filteredTeams ]
+   const options = newlyOrderedTeams.map(team => {
     return <option key={team.id} value={team.id}>{team.name}</option>
   })
+
   return (
     <div>
       <label>Team</label>
@@ -11,7 +15,7 @@ const MessageFormFields = props => {
         { options }
       </select>
       <label>Message</label>
-      <input type="text" value={props.body} onChange={props.handleMessageChange}/>
+      <textarea value={props.body} onChange={props.handleBodyChange}/>
     </div>
   )
 };

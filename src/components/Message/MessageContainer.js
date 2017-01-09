@@ -24,8 +24,14 @@ class MessageContainer extends Component {
     console.log("EDIT SUBMITTED!");
   }
 
-  toggleFormActive() {
-    this.setState({formActive: !this.state.formActive})
+  activateForm() {
+    if(!this.state.formActive) {
+      this.setState({formActive: true})
+    }
+  }
+
+  deactivateForm() {
+    this.setState({formActive: false})
   }
 
   render() {
@@ -33,13 +39,16 @@ class MessageContainer extends Component {
       handleBodyChange: this.handleBodyChange.bind(this),
       handleTeamChange: this.handleTeamChange.bind(this),
       handleSubmit: this.handleSubmit.bind(this),
-      toggleFormActive: this.toggleFormActive.bind(this)
+      activateForm: this.activateForm.bind(this),
+      deactivateForm: this.deactivateForm.bind(this)
     }
-
+    let message = this.state.message
+    let state = this.state
     return(
       <Message
         teams={this.props.teams}
-        {...this.state}
+        {...state}
+        {...message}
         {...eventHandlers}
       />
     )

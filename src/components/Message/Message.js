@@ -1,13 +1,22 @@
 import React from 'react';
 
-const Message = props => {
-  let { message, selectedTeam, formActive, toggleFormActive } = props;
+import SendButton from './../SendButton/SendButton';
+import CloseButton from './../CloseButton/CloseButton';
+import Panel from './../../assets/components/Panel';
+import MessageFormFields from './../MessageFormFields/MessageFormFields';
 
-  let messageDisplay;
+const Message = props => {
+  console.log(props.body);
+  let { message, selectedTeam, formActive, activateForm } = props;
+
+  let displayMessageOrForm;
   if(formActive) {
-    messageDisplay = <div>Form active!</div>;
+    displayMessageOrForm = <div>
+      <MessageFormFields {...props} />
+      <CloseButton onClick={props.deactivateForm} />
+    </div>
   } else {
-    messageDisplay = <div>
+    displayMessageOrForm = <div>
       Team: {selectedTeam.name}
       <br />
       Message: {message.body}
@@ -15,9 +24,12 @@ const Message = props => {
     </div>;
   }
   return (
-    <div onClick={toggleFormActive}>
-      { messageDisplay }
-    </div>
+    <Panel>
+      <div onClick={activateForm}>
+        { displayMessageOrForm }
+      </div>
+      <SendButton primary />
+    </Panel>
   );
 };
 

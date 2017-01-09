@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 
 import NewMessageForm from './NewMessageForm';
 import { postNewMessage } from './../../actions/message'
+import Panel from './../../assets/components/Panel'
+
 
 class NewMessageFormContainer extends React.Component {
   constructor(props) {
@@ -19,7 +21,7 @@ class NewMessageFormContainer extends React.Component {
     this.setState({selectedTeam: newTeam})
   }
 
-  handleMessageChange(e){
+  handleBodyChange(e){
     this.setState({body: e.target.value})
   }
 
@@ -35,15 +37,17 @@ class NewMessageFormContainer extends React.Component {
   render() {
     let eventHandlers = {
       handleTeamChange: this.handleTeamChange.bind(this),
-      handleMessageChange: this.handleMessageChange.bind(this),
+      handleBodyChange: this.handleBodyChange.bind(this),
       handleSubmit: this.handleSubmit.bind(this)
     }
     return(
-      <NewMessageForm
-        teams={this.props.teams}
-        {...eventHandlers}
-        {...this.state}
-      />
+      <Panel>
+        <NewMessageForm
+          teams={this.props.teams}
+          {...eventHandlers}
+          {...this.state}
+        />
+      </Panel>
     );
   }
 }

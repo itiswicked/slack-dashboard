@@ -1,19 +1,21 @@
-import React from 'react';
 import styled from 'styled-components';
 
-import { selectColor, selectDarkColor } from '../colors';
+import { selectColor, selectDarkColor, colors } from '../colors';
 
-export default const Button = styled.button`
-  background-color: ${props => props.primary ? selectColor(props) : 'white'};
-  color: ${props => props.primary ? 'white' : selectColor(props)};
-  padding: 8px;
-  margin: 8px;
-  border: 2px solid ${props => selectColor(props)};
+const Button = styled.button`
+  background-color: ${colors.darkBlue.hex};
+  color: ${colors.blueShadow};
+  padding: ${props => props.noBorder ? '4px' : '8px'};;
+  margin: ${props => props.noBorder ? '4px' : '8px'};;
+  border: ${props => props.noBorder ? 'none' : '2px solid'};
+  border-color: ${colors.blueShadow};
   border-radius: 4px;
 
   &:hover {
-    background-color: ${props => props.primary ? selectDarkColor(props) : 'white'};
-    color: ${props => props.primary ? 'white' : selectDarkColor(props)};
-    border: 2px solid ${props => selectDarkColor(props)};
+    background-color: ${'inherit'};
+    color: ${'#eee'};
+    border: ${props => props.noBorder ? 'none' : '2px solid'};
   }
 `
+
+export default Button;

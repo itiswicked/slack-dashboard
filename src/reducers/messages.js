@@ -2,7 +2,11 @@ import { POST_NEW_MESSAGE } from './../actions/message';
 // import { CHANGE_ACTIVE_FORM } from './../actions/message';
 
 let initialState = {
-  items: []
+  items: [{
+    body: 'wrgwegt',
+    teamId: 1,
+    id: 1
+  }]
 }
 
 const messages = (state = initialState, action) => {

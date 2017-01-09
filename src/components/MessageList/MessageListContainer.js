@@ -1,11 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 
 import MessageContainer from './../Message/MessageContainer'
 
+const MessageList = styled.section`
+  margin: 0 auto;
+`;
+
 const MessageListContainer = props => {
   let messageComps = props.messages.map(message => {
-    return <MessageContainer key={message.id} {...message} />
+    return <MessageContainer key={message.id} id={message.id} />
   });
   return (
     <div>
