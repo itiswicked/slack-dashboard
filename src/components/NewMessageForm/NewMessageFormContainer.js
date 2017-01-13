@@ -11,7 +11,7 @@ class NewMessageFormContainer extends React.Component {
     super(props)
     this.state = {
       selectedTeam: this.props.teams[0],
-      body: ""
+      body: null
     }
   }
 
@@ -28,6 +28,7 @@ class NewMessageFormContainer extends React.Component {
   handleSubmit(e) {
     e.preventDefault()
     if(this.state.body !== "") {
+      console.log();
       let teamId = this.state.selectedTeam.id
       this.props.submitMessage(teamId, this.state.body);
       this.setState({body: ""})

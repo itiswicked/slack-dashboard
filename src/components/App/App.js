@@ -11,6 +11,19 @@ const MessagesSection = styled.div`
   position: relative;
   padding: 20px;
   margin: 0 auto;
+
+  .react-layout-components--box {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+  }
+
+  h1, h2, h3, h4, h5 {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
 `;
 
 class App extends Component {

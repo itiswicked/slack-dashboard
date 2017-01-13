@@ -13,6 +13,10 @@ const ThemeWrapper = styled.div`
   font-family: 'Lato', sans-serif;
   font-size: 18px;
   font-weight: 100;
+
+  *:focus {
+    outline: none !important
+  }
 `
 
 ReactDOM.render(
